@@ -48,7 +48,7 @@
                 <table class="table table-striped" id="myDataTable">
                     <thead>
                     <tr>
-                        <th scope="col">#id</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Username</th>
                         <th scope="col">Email</th>
                         <th scope="col">Manage</th>
@@ -61,7 +61,7 @@
                                 <td>{{ $user->username }}</td>
                                 <td>{{$user->email}}</td>
                                 <td>
-                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn btn-sm">Edit</a>
+                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn btn-sm fas fa-edit"></a>
                                 </td>
                             </tr>
                         @endforeach

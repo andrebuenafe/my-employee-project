@@ -27,6 +27,7 @@ class UserController extends Controller
         }
         // fetch the users // 
         $users = $users->get();
+       
         return view('users.index', compact('users'));
     }
 
@@ -54,8 +55,7 @@ class UserController extends Controller
             'last_name' => $request->last_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ]);
-
+        ]);      
         return redirect()->route('users.index')->with('message', 'User Registered Successfully!');
     }
 

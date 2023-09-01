@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Country;
+use App\Http\Requests\CountryStoreRequest;
 
 class CountryController extends Controller
 {
@@ -12,9 +14,18 @@ class CountryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // $countries = Country::all();
+        $countries = Country::query();
+        if($request->has('search')){
+            $searchData = $request->search;
+            $countries = Country::where('country_code', 'like', '%' .($searchData). '%')
+            ->orWhere('name', 'like', '%' .($searchData). '%');
+        }
+        // fetch the users // 
+        $countries = $countries->get();
+        return view('countries.index', compact('countries'));
     }
 
     /**
@@ -22,9 +33,9 @@ class CountryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Country $country)
     {
-        //
+        return view('countries.create');
     }
 
     /**
@@ -33,9 +44,10 @@ class CountryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CountryStoreRequest $request)
     {
-        //
+        Country::create($request->validated());
+        return redirect()->route('countries.index')->with('message', 'Countries Created Successfully!');
     }
 
     /**
@@ -81,5 +93,5 @@ class CountryController extends Controller
     public function destroy($id)
     {
         //
-    }
+    } 
 }

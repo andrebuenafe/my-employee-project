@@ -151,7 +151,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->username }}</span>
-                                
+                                <img class="img-profile rounded-circle"src="{{asset('images/user-placeholder.png')}}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -204,7 +204,7 @@
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
+    <a class="scroll-to-top rounded" href="#" onclick="scrolltoTop();">
         <i class="fas fa-angle-up"></i>
     </a>
 
@@ -227,7 +227,15 @@
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
     <script>let table = new DataTable('#myDataTable');</script>
 
-
+    {{-- scroll to top script here --}}
+    <script>
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Add smooth scrolling animation
+            });
+        }
+    </script>
 </body>
 
 </html>
